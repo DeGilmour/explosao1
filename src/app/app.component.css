@@ -1,0 +1,10 @@
+
+html{
+	background-image: url("https://i.redd.it/8mn4p369li331.png");
+	background-position: center;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+	min-height:150vh;
+	font-family: 'Noto Sans', sans-serif;
+}

@@ -1,0 +1,32 @@
+
+<body>
+
+<div class=" col-sm container">
+<h2>Coloque um produto</h2>
+<form [formGroup]="pForm" (ngSubmit)="createProducts()">
+  <div class="mt-10 row p-2 col-4"></div>
+    <tr>
+        <span class="lead" >Insira o Nome : </span>
+        <input class="myinput form-control p-3" type="text" formControlName="nome" id="">
+      </tr>
+      <tr>
+          <span class="lead">Insira a Quantidade : </span>
+        <input class="myinput form-control p-3" type="number" formControlName="quantidade" id="">
+      </tr>
+     
+      <tr>
+        <span class="lead">Insira o valor :</span>
+      <input  class="myinput form-control p-3" type="number" formControlName="valor" id="">
+    </tr>
+    <tr>
+      <span class="lead" >Selecione o nome tipo :</span>
+    <select class="browser-default custom-select" (change)="selectOption($event.target.value)" formControlName="id_tipo" >
+      <option>Escolha um tipo de produto</option>
+      <option *ngFor="let tipo of nome_tipos;" [ngValue]="tipo.id_tipo" >{{tipo.nome}}</option>
+    </select>
+   
+  </tr>
+    <button class="btn lead " type="submit">Criar Produto</button>
+</form>
+</div>
+</body>
