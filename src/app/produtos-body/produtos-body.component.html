@@ -1,0 +1,36 @@
+
+<div  id="wrapper">
+    <div  id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a>
+                    Hardware
+                </a>
+            </li>
+            <div class="bg-light border-right" *ngFor="let tipos of tipos;" >
+                <div [id]="tipos.id_tipo" class="divs_Tipos list-group list-group-flush">
+                    <!-- <p><a  class="btn btn-outline-dark" (click)="createCategorias(tipos.id_tipo)" [routerLink]="['/produtos-home', tipos.id_tipo]" routerLinkActive>{{tipos.nome}} > </a></p> -->
+                    <a class="btn btn-outline-dark list-group-item list-group-item-action bg-light"    *ngIf=" prod_val===null || prod_val=== tipos.id_tipo"  (click)="createCategorias(tipos.id_tipo)" [routerLink]="['/produtos-home', tipos.id_tipo]" routerLinkActive>{{tipos.nome}} </a>
+                    <div name ="div_produtos" id="div_produtos" ></div>
+                </div>
+               
+            </div>
+            <li class="sidebar-brand" for="prod.nome_tipo"  >{{nome_tipo_div}}</li>
+            <div class="side-nav side wide sn-bg-1" *ngFor="let prod of produtos;" >
+                <div>
+                    <!-- <p><a  class="btn btn-outline-dark" (click)="createCategorias(tipos.id_tipo)" [routerLink]="['/produtos-home', tipos.id_tipo]" routerLinkActive>{{tipos.nome}} > </a></p> -->
+                    <a class="btn btn-outline-dark list-group-item list-group-item-action bg-light"   [routerLink]="['/produtos-home', prod.id_tipo, prod.id]" routerLinkActive>{{prod.nome_categoria}}  </a>
+                </div>
+            </div>
+          
+        </ul>
+    </div>
+    
+</div>
+
+
+<!-- <label for="categoria"><p>Processador</p></label>
+<div *ngFor="let tipos of tipos;" >
+    <p><a *ngIf="tipos.id_tipo===2" class= "btn btn-outline-dark"  [routerLink]="['/produtos-home', tipos.nome_categoria]" routerLinkActive>{{tipos.nome_categoria}}  </a></p>
+</div>
+ -->

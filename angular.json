@@ -90,7 +90,12 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "/server/media/",
+              "server/media/",
+              "/server/media",
+              "server/media",
+              "D:/Explosao/E.A/explosao/server/media/"
             ],
             "styles": [
               "src/styles.css"

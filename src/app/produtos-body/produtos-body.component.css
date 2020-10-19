@@ -1,17 +1,23 @@
-
-html{
-	background-image: url("https://i.redd.it/8mn4p369li331.png");
-	background-position: center;
-    background-origin: content-box;
-    background-repeat: no-repeat;
-    background-size: cover;
-	min-height:150vh;
-	font-family: 'Noto Sans', sans-serif;
+.categorias {
+    width:500px;
+    margin:50px ;
+    float:left;
+    bottom: 10px;
+    
 }
 
-
-
- body {
+.right-element {
+    background: red;
+    display: inline-block;
+    position: relative;
+}
+.test
+{
+   position:fixed;
+   left:100px;
+   top:150px;
+}
+body {
     overflow-x: hidden;
  }
 
@@ -36,7 +42,7 @@ html{
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #000;
+    background: rgba(0, 0, 0, 0.7);    /*  70% opaque green */ 
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -98,11 +104,11 @@ html{
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: #999999;
+    color: #2d52b9;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
-    color: #fff;
+    color: rgb(13, 26, 99);
     background: none;
 }
 

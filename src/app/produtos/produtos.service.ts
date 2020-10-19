@@ -24,6 +24,16 @@ export class ProdutosService {
     console.log("get nomes")
     return this.http.get(this.rootURL + "-tipo");
   }
+  getTipo_Produtos(){
+    return this.http.get('produtos-get-tipo-produtos')
+  }
+
+  public uploadImage(image: FormData) {
+    return this.http.post(this.rootURL + "-image", image);
+  }
+ 
+  
+  
   
   
 }

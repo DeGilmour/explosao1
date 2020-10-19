@@ -1,0 +1,28 @@
+
+<div class="container">    
+    <div class="col-md-6 col-md-offset-3 loginBox">    
+       <h1> Bem vindo {{id_usuario}}  </h1>
+       <div class="container input-group mb-3 "> 
+        <table class="table table-borderless">
+            <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">RG</th>
+                <th scope="col">CPF</th>
+            </tr>
+            </thead>
+            <tbody *ngFor="let usuario of show_dados">
+            <tr >
+                <td><input class="form-control"  ngModel={{usuario.nome_usuario}}></td>
+                <td><input class="form-control"   ngModel={{usuario.email}}></td>
+                <td><input ngModel="RG" class="form-control"></td>
+                <td><input ngModel="CPF" class="form-control"></td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <!-- <a href="javascript:void(0);" (click)="logout()">Logout</a>     -->
+    </div>    
+  </div>   

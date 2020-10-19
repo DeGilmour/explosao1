@@ -1,23 +1,49 @@
 
 <header>
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark pink scrolling-navbar">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark  scrolling-navbar">
       <a class="navbar-brand" href="#" routerLink="produtos-inicial" routerLinkActive="active"><strong>Explosao Menu</strong></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" routerLink="produtos-add" routerLinkActive="active">Adicione Produtos <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="produtos-home" routerLinkActive="active">Veja Produtos</a>
           </li>
-          
+          <li class="nav-item">
+            <a *ngIf="!isUserLoggedIn"class="nav-link" routerLink="produtos-login" routerLinkActive="active">Login</a>
+          </li>
+          <li *ngIf="isUserLoggedIn" class="nav-item">
+            <a class="nav-link" routerLink="dashboard" routerLinkActive="active">Perfil</a>
+          </li>
+          <!-- <div *ngIf="isUserLoggedIn">
+            <h2>{{nome_user}}</h2>
+            </div> -->
+        </ul>
+         
+      </div>
+      <div  style="right: 1000px">
+        <ul class="navbar-nav mr-auto">
+          <li  class="nav-item" *ngIf="isUserLoggedIn">
+            <a class="nav-link"  href="javascript:void(0);" (click)="logout()">Logout</a> 
+          </li>
         </ul>
       </div>
+      <div  style="right: 1000px">
+        <ul class="navbar-nav mr-auto">
+          <li  class="nav-item">
+            <a class="nav-link"  href="javascript:void(0);" routerLink="produtos-carrinho" routerLinkActive="active">Ver Carrinho</a> 
+          </li>
+        </ul>
+      </div>
+     
+      
     </nav>
+    
   
   </header>

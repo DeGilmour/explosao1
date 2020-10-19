@@ -1,11 +1,15 @@
 
-<body>
-  <input id="search_input" (keydown)="Search()" style="width: 1000px;" class="form-control md-10 pd-10" placeholder="Pesquise nossos produtos aqui" aria-label="Search" aria-describedby="basic-addon1">
-<div class="row p-5 table-responsive">
+<div  class="p-5  " style="right: 10000px;">
+  <form [formGroup]="pForm">
+    <input formControlName="nome" (keyup)="Search()" id="search_input" style="width: 1000px;" class="form-control md-10 pd-10" placeholder="Pesquise nossos produtos aqui" aria-label="Search" aria-describedby="basic-addon1">
+    <input class="btn btn-outline-dark" (click)="Navegate()" type="submit" value="Pesquisar produto">
+  </form>
+</div>
+<div class=" p-5 table-responsive">
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col" ></th>
       <th scope="col">Nome</th>
       <th scope="col">Quantidade em estoque</th>
       <th scope="col">Tipo do Produto</th>
@@ -14,8 +18,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let prod of produtos;">
-      <td>{{prod.id_produto}}</td>
-      <td class="nomes">{{prod.nome}}</td>
+      <td *ngIf="prod.image" ><img class="rounded mx-auto d-block" width="300" style="width: 200px; height: 200px;" [src]='"assets/"+prod.image+""' ></td>
+      <td *ngIf="!prod.image"><img  style="width: 200px; height: 200px;" src="assets/erro-com-efeito-de-falha-na-tela-erro-404-pagina-nao-encontrada_143407-1.jpg"></td>
+      <td class="nomes"> <a [routerLink]="['/produtos-self', prod.id_produto]" routerLinkActive> {{prod.nome}}</a></td>
       <td>{{prod.quantidade}}</td>
       <td>{{prod.nome_tipo}}</td>
       <td>R$ {{prod.valor}}</td>
@@ -23,4 +28,4 @@
   </tbody>
 </table>
 </div>
-</body>
+

@@ -1,0 +1,38 @@
+
+<div class="container list-group list-group-flush">    
+    <div class=" loginBox">    
+        <h3>Logue-se Por favor</h3>    
+        <p *ngIf="message" class="text-center error">{{message}}</p>    
+      <form [formGroup]="loginForm" (ngSubmit)="login()">    
+          <div  style="width: 600px;" [ngClass]="{ 'has-error': f.id_usuario.errors }" >    
+              <label for="id_usuario" >Coloque seu nome</label>    
+              <div class="form-group clearfix list-group-item">    
+                  <input type="text" class="form-control" formControlName="id_usuario" />    
+                    
+              </div>    
+          </div>    
+          <div class="form-group clearfix "  [ngClass]="{ 'has-error': f.senha.errors }">    
+            <label for="senha" class="">Senha</label>    
+            <div class="list-group-item" style="width: 600px;">    
+                <input type="password" class="form-control" formControlName="senha"/>    
+            </div>    
+          </div>    
+          <div class=" form-group ">    
+            <button class="btn btn-success" type="submit">Login</button>    
+          </div>    
+      </form>    
+    </div>    
+</div> 
+<div class="container">
+  <h1>Crie um Usuario</h1>
+<form [formGroup]="createUser" (ngSubmit)="create_user()" >
+  <label for="email" class="mt-2">Seu nome: </label>
+  <input  style="width: 600px;"  class="form-control mt-2" formControlName="nome">
+  <label for="email" class="mt-2" >Seu email: </label>
+  <input  style="width: 600px;"  class="form-control mt-2" formControlName="email">
+  <label for="" class="mt-2"> Sua senha: </label>
+  <input   style="width: 600px;" class="form-control mt-2" formControlName="senha">
+  <button class="btn btn-success mt-2" type="submit">Crie um usuario</button>
+</form>
+
+</div>
