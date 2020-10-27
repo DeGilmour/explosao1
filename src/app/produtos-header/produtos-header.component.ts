@@ -18,9 +18,15 @@ export class ProdutosHeaderComponent implements OnInit {
   this.dataSharingService.nomeUser.subscribe( value => {
     this.nome_user = value;
 });
+  this.dataSharingService.n_produtos_carrinho.subscribe( value => {
+    this.n_produtos_carrinho = value;
+  });
   }
-  public id_usuario = ""; logado=false;isUserLoggedIn: boolean;nome_user : string;
+  public id_usuario = ""; logado=false;isUserLoggedIn: boolean;nome_user : string; n_produtos_carrinho : Number;
   ngOnInit(): void {
+    if (localStorage.hasOwnProperty("n_conteudo_carrinho")) {
+      this.n_produtos_carrinho = JSON.parse(localStorage.getItem("n_conteudo_carrinho"))
+    }
   }
   
   logout() {  

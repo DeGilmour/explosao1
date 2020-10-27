@@ -36,7 +36,11 @@ export class ProdutosHomeComponent implements OnInit {
     valor : ""
   }
   pForm = new FormGroup({
-    nome: new FormControl('', Validators.nullValidator && Validators.required)
+    nome: new FormControl('', Validators.nullValidator && Validators.required),
+  });
+
+  order = new FormGroup({
+    setting: new FormControl('', Validators.nullValidator && Validators.required),
   });
   
   public produtos
@@ -46,7 +50,7 @@ export class ProdutosHomeComponent implements OnInit {
   public categoria;
   public  nome_produto 
   public categoria_produto
-  public image;alt_img = true;
+  public image;alt_img = true;n_pag = [];uniq;
 
   getProdutos() {
     this.produtosService.getProduto().subscribe(
@@ -76,11 +80,13 @@ export class ProdutosHomeComponent implements OnInit {
             if(this.produtos){
               for (let index = 0; index < this.produtos.length; index++) {
                 this.image = "assets/" + this.produtos[index]["image"];
+                console.log(this.produtos)
                 if(this.produtos[index]["image"]){
                   this.alt_img = null
                 }
                 console.log("IMAGE" + this.image)
               }
+      
             }
             console.log(data)},
           err => console.error(err),
@@ -126,6 +132,19 @@ export class ProdutosHomeComponent implements OnInit {
       this.pForm.reset();
     });
   }
+
+  orderProducts(order_type){
+    this.order.setValue({setting : order_type})
+    this.produtosService.NavegateSearch(this.order.value).pipe(takeUntil(this.destroy$)).subscribe(data => {
+      console.log('message::::', data);
+      if (data!=undefined){
+        console.log("This"+ data)
+        this.produtos = data
+      }
+      this.order.reset();
+    });
+  }
+  
 
 }
 

@@ -1,21 +1,23 @@
 <div class="row">
   <div *ngFor="let conteudo of lista_final" class="card" style="width: 18rem;">
-    <img class="rounded mx-auto d-block" width="300" style="width: 200px; height: 200px;" [src]='"assets/"+conteudo.image+""' >
+    <img  class="rounded mx-auto d-block" width="300" style="width: 200px; height: 200px;" [src]='"assets/"+conteudo.image+""' >
     <div class="card-body">
       <h5 class="card-title">{{conteudo.nome}}</h5>
-      <p class="card-text">R$ {{conteudo.valor}}</p>
+      <h6 class="card-text"> <strong style="font-size: 35px; letter-spacing: -2px;">$ {{conteudo.valor}}</strong></h6>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">{{conteudo.especificacoes}}</li>
-      <li class="list-group-item">Dapibus ac facilisis in</li>
-      <li class="list-group-item">Vestibulum at eros</li>
+      <li class="list-group-item" style="text-align: center;">{{conteudo.especificacoes}}</li>
     </ul>
     <div class="card-body">
-      <form >
-        <input (click)="remover_item($event.target.name)" name={{conteudo.id_produto}} placeholder="Apagar do Carrinho" class="btn btn-primary">
-      </form >
-      <a routerLink="/produtos-home" routerLinkActive="active" class="card-link">Continuar Comprando</a>
-      <a href="" class="card-link">Ir para o checkout</a>
+      <div class="list-group">
+        <form >
+          <a (click)="remover_item($event.target.name)"  name={{conteudo.id_produto}} placeholder="Apagar do Carrinho" class="btn btn-primary list-group-item">Apagar do Carrinho</a>
+        </form >
+        <a routerLink="/produtos-home" routerLinkActive="active" class="list-group-item btn">Continuar Comprando</a>
+        <a class="list-group-item btn list-group-item-success" (click)="comprarProtudos()" >Ir para o checkout</a>
+      <!-- <a routerLink="/produtos-home" routerLinkActive="active" class="card-link">Continuar Comprando</a>
+      <a href="" class="card-link">Ir para o checkout</a> -->
+    </div>
     </div>
   </div>
 </div>

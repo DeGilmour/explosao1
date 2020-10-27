@@ -18,6 +18,8 @@ var https = require('https');
 const { query } = require('express');
 https.createServer(app).listen(443);
 const user = require('./user');
+const controller = require('./controller');
+const { off } = require('process');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -53,6 +55,8 @@ connection.connect(function(err){
     uploadImage(connection)
     user.create_user(connection,router);
     user.login_user(connection,router);
+    user.comprarProtudos(connection,router)
+    user.historicoProdutosUsuario(connection,router)
   })
   
 
@@ -67,6 +71,8 @@ function getProduto(conn){
   });
 })
 }
+
+
 function getNome_tipo(conn){
   router.get('/produtos-add-tipo', (req, res) =>{
     var query = 'SELECT * from Tipos ';
@@ -88,9 +94,18 @@ function getTiposProdutos(conn){
 }
 function navegate(conn){
   router.post('/produtos-home-para', (req, res) =>{
-    console.log("Nomes = " + req.body.nome)
+    console.log("Nomes = " + req.body.setting)
     const nome = req.body.nome;
-    var  query = `SELECT p.nome,quantidade,valor,t.nome as nome_tipo , locate ('${nome}',p.nome) from Produtos p inner join Tipos t where p.id_tipo = t.id_tipo and locate ('${nome}',p.nome) > 0 `;
+    var  query = `SELECT p.nome,quantidade,image,id_produto,valor,t.nome as nome_tipo , locate ('${nome}',p.nome) from Produtos p inner join Tipos t where p.id_tipo = t.id_tipo and locate ('${nome}',p.nome) > 0 `;
+    if(req.body.setting){
+      var order = req.body.setting;
+      if(order == 1){
+        var  query = `SELECT p.nome,quantidade,image,id_produto,valor,t.nome as nome_tipo from Produtos p inner join Tipos t where p.id_tipo = t.id_tipo order by p.valor desc `;
+      }
+      else{
+        var  query = `SELECT p.nome,quantidade,image,id_produto,valor,t.nome as nome_tipo from Produtos p inner join Tipos t where p.id_tipo = t.id_tipo order by p.valor asc `;
+      }
+    }
     console.log("Achei  " + query)
     conn.query(query, function (error, results, fields){
         if(error) return console.log(error);
@@ -103,7 +118,7 @@ function navegateLink(conn){
   router.post('/produtos-home-para-link', (req, res) =>{
     console.log(req.body)
     var id_tipo = req.body.nome;
-    var  query = `SELECT (select count(nome) FROM Produtos WHERE id_tipo = '${id_tipo}'),p.id_produto,p.nome,quantidade,valor from Produtos p  where p.id_tipo = '${id_tipo}' `;
+    var  query = `SELECT (select count(nome) FROM Produtos WHERE id_tipo = '${id_tipo}'),p.id_produto,p.nome,quantidade,valor,image from Produtos p  where p.id_tipo = '${id_tipo}' `;
     console.log("Achei  " + query)
     conn.query(query, function (error, results, fields){
         if(error) return console.log(error);
@@ -117,7 +132,7 @@ function navegateLink_Produtos(conn){
     console.log(req.body)
     var id_tipo_categoria = req.body.categoria;
     var id_tipo = req.body.id_tipo;
-    var  query = `select p.nome,quantidade,valor,t.nome as nome_tipo from produtos P  inner join tipos t on t.id_tipo = p.id_tipo where id_categoria = '${id_tipo_categoria}' and p.id_tipo = '${id_tipo}'  `;
+    var  query = `select p.nome,quantidade,valor,image,id_produto,t.nome as nome_tipo from produtos P  inner join tipos t on t.id_tipo = p.id_tipo where p.id_categoria = '${id_tipo_categoria}' and p.id_tipo = '${id_tipo}'  `;
     console.log("Achei  " + query)
     conn.query(query, function (error, results, fields){
         if(error) return console.log(error);
@@ -155,7 +170,7 @@ function getCategorias_tipo_link(conn){
   router.post('/produtos-get-tipo-produtos-link', (req, res) =>{
     var id_tipo = req.body.id_tipo
     console.log("ID TIPO " + id_tipo)
-    var  query = `SELECT *, p.id_produto, t.nome as nome_tipo from categorias_tipo ct inner join tipos t on ct.id_tipo = t.id_tipo inner join produtos p on p.id_categoria = ct.id  where ct.id_tipo = '${id_tipo}'  `;
+    var  query = `SELECT *, t.nome as nome_tipo from categorias_tipo ct inner join tipos t on ct.id_tipo = t.id_tipo where ct.id_tipo = '${id_tipo}'  `;
     console.log(query)
     conn.query(query, function (error, results, fields){
         if(error) return console.log(error);

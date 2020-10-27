@@ -3,8 +3,18 @@
   <form [formGroup]="pForm">
     <input formControlName="nome" (keyup)="Search()" id="search_input" style="width: 1000px;" class="form-control md-10 pd-10" placeholder="Pesquise nossos produtos aqui" aria-label="Search" aria-describedby="basic-addon1">
     <input class="btn btn-outline-dark" (click)="Navegate()" type="submit" value="Pesquisar produto">
+    <div class="form-group row">
+      <label for="select_setting" class="col-sm-2 col-form-label">Listar por </label>
+      <div class="col-sm-10">
+        <select (change)="orderProducts($event.target.value)" style="width: 300px;" id="select_setting" class="form-control">
+          <option value="1">Maior preço</option>
+          <option value="2">Menor preço</option>
+        </select>
+      </div>
+    </div>
   </form>
 </div>
+
 <div class=" p-5 table-responsive">
 <table class="table">
   <thead>
@@ -17,15 +27,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let prod of produtos;">
+    <tr  scope="row" *ngFor="let prod of produtos;">
       <td *ngIf="prod.image" ><img class="rounded mx-auto d-block" width="300" style="width: 200px; height: 200px;" [src]='"assets/"+prod.image+""' ></td>
       <td *ngIf="!prod.image"><img  style="width: 200px; height: 200px;" src="assets/erro-com-efeito-de-falha-na-tela-erro-404-pagina-nao-encontrada_143407-1.jpg"></td>
-      <td class="nomes"> <a [routerLink]="['/produtos-self', prod.id_produto]" routerLinkActive> {{prod.nome}}</a></td>
-      <td>{{prod.quantidade}}</td>
-      <td>{{prod.nome_tipo}}</td>
-      <td>R$ {{prod.valor}}</td>
+      <td style="opacity: 0.8;" class="nomes"> <a [routerLink]="['/produtos-self', prod.id_produto]" routerLinkActive> {{prod.nome}}</a></td>
+      <td style="opacity: 0.8;">{{prod.quantidade}}</td>
+      <td style="opacity: 0.8;">{{prod.nome_tipo}}</td>
+      <td style="opacity: 0.8;">R$ {{prod.valor}}</td>
     </tr>
   </tbody>
 </table>
+
 </div>
 

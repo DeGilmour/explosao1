@@ -26,6 +26,9 @@ export class ProdutosHomeService {
     return this.http.post(this.rootURL+"-home-para-link-produtos" , produto);
     
   }
+  Paginator(num_pagina : any){
+    return this.http.post(this.rootURL+"-home-paginar" , num_pagina);
+  }
   // getProdutoNav() {
   //   return this.http.get(this.rootURL + '-home-set');
   // }

@@ -57,22 +57,15 @@ export class ProdutosSelfComponent implements OnInit {
   }
   add_produto_carrinho(){
     this.dataSharingService.conteudo_carrinnho.next(this.produtos);
+    
     localStorage.setItem('tem_carrinho', "true");
-    // localStorage.setItem("lista_carrinho",this.produtos)
-    // console.log("Carrinho" + localStorage.getItem("lista_carrinho"))
-    // if (localStorage.hasOwnProperty("conteudo_carrinho")) {
-    //   this.lista_para_carrinho = JSON.parse(localStorage.getItem("peoples"))
-    // }
-    // this.lista_para_carrinho.push(this.produtos);
-    // localStorage.setItem("conteudo_carrinho", JSON.stringify(this.lista_para_carrinho));
-
+    
     if (localStorage.hasOwnProperty("conteudo_carrinho")) {
       this.lista_para_carrinho = JSON.parse(localStorage.getItem("conteudo_carrinho"))
     }
     this.lista_para_carrinho.push(this.produtos);
     localStorage.setItem("conteudo_carrinho", JSON.stringify(this.lista_para_carrinho));
-    // this.lista_para_carrinho.push(this.produtos)
-    // localStorage.setItem('conteudo_carrinho', JSON.stringify(this.lista_para_carrinho));
+   
     this.router.navigate(["/produtos-carrinho"])
 
   }

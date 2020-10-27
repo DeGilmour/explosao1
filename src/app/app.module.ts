@@ -42,7 +42,7 @@ export function tokenGetter() {
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ProdutosBodyComponent,ProdutosHomeComponent,ProdutosLoginGuardGuard,ProdutosHeaderComponent],
+  providers: [ProdutosBodyComponent,ProdutosHomeComponent,ProdutosLoginGuardGuard,ProdutosHeaderComponent,ProdutosCarrinhoComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

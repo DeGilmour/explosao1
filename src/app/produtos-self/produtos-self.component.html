@@ -1,13 +1,6 @@
-<div class="container text-primary " *ngFor="let prod of produtos;" style="background-color: black; height: 1000px; width: 700px;">
+<div class="container text-primary rounded " *ngFor="let prod of produtos;" style=" background-color: black; height: 1000px; width: 700px;">
     <div class="row">
-        <!-- <div class *ngFor="let prod of produtos;">
-            <ul class="mt-10">
-                <li>
-                    {{prod.nome}} Teste Produto AAAAAAAAAAAAAAAAAAA
-                </li>
-            </ul>
-            
-        </div> -->
+       
         <div class="mt-10 p-10  col">
             <h1> {{prod.nome}}</h1>
         </div>
@@ -26,8 +19,8 @@
             </div>
 
         </div>
-        <div>
-            <button class="btn" (click)="add_produto_carrinho()">Adicionar ao Carrinho</button>
+        <div class="col p-5">
+            <button class=" btn btn-primary" (click)="add_produto_carrinho()">Adicionar ao Carrinho</button>
         </div>
         
 
