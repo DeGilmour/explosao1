@@ -1,4 +1,5 @@
-#Explosao Project
+# Explosao Project
+
 Made with angular, its a e-commerce store that sells hardware
 
 # Explosao
