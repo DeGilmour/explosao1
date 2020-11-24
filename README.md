@@ -1,3 +1,6 @@
+#Explosao Project
+Made with angular, its a e-commerce store that sells hardware
+
 # Explosao
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.2.
